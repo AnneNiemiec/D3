@@ -1,9 +1,9 @@
 
 var svgWidth = 960;
-var svgHeight = 600;
+var svgHeight = 500;
 
 var margin = {
-  top: 30,
+  top: 50,
   right: 40,
   bottom: 80,
   left: 100
@@ -50,7 +50,7 @@ function xScale(healthcareData) {
 
     // Create y scale function
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(healthcareData, d => d.healthcare)])
+      .domain([0, d3.max(healthcareData, d => d.healthcare)+5])
       .range([height, 0]);
   
     // Create axis functions
@@ -81,16 +81,17 @@ function xScale(healthcareData) {
       .attr("fill", "white")
       .attr("class", "stateText");
 
-      // append g
+      // append g (left)
       chartGroup.append("g")
       .classed('axis', true)
       .style("font-size", "12px")
+      .attr("transform", `translate(${25},0)`)
       .call(leftAxis);
 
-      // append g
+      // append g (bottom)
       chartGroup.append("g")
       .classed('axis', true)
-      .attr("transform", `translate(0,${height})`)
+      .attr("transform", `translate(25,${height})`)
       .call(bottomAxis);
 
       //labels 
