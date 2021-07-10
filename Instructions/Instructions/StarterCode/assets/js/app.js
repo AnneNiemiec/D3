@@ -47,7 +47,7 @@ function xScale(healthcareData) {
 }
     // xLinearScale function above csv import
     var xLinearScale = xScale(healthcareData);
-  
+
     // Create y scale function
     var yLinearScale = d3.scaleLinear()
       .domain([0, d3.max(healthcareData, d => d.healthcare)])
@@ -58,25 +58,31 @@ function xScale(healthcareData) {
     var leftAxis = d3.axisLeft(yLinearScale);
 
     // append circles
-      chartGroup.selectAll("circle")
+      var circlesGrid=chartGroup.selectAll("circle")
       .data(healthcareData)
       .enter()
       .append("circle")
       .attr("cx", d => xLinearScale(d.poverty))
       .attr("cy", d => yLinearScale(d.healthcare))
       .attr("r", 20)
-      .attr("fill", "pink")
-      .attr("opacity", ".5");
+      .attr("fill", "blue")
+      .attr("opacity", ".5")
+      .classed("healthcareCircle",true);
 
     // append text
       chartGroup.selectAll("text")
       .data(healthcareData)
       .enter()
       .append("text")
+      .text (function(d) {
+        return d.abbr
+
       //.merge(circlesGroup)
       .attr("dx", d => xLinearScale(d.poverty))
       .attr("dy", d => yLinearScale(d.healthcare)+5)
-      .attr("font-size", "8px");
+      .attr("font-size", "8px")
+      .attr("fill", "white")
+      .attr("class", "stateText");
 
       // append g
       chartGroup.append("g")
@@ -86,8 +92,25 @@ function xScale(healthcareData) {
       // append g
       chartGroup.append("g")
       .classed('axis', true)
+      .attr("transform", `translate(0,${height})`)
       .call(bottomAxis);
-     //format text here!!
 
+      //labels 
+      //**(assistance from instructor and Bitty (cohort) during office hours)
 
-})
+      chartGroup.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left +30)
+      .attr("x", 0 - (height / 1.0))
+      .attr("dy","lem")
+      .attr("class", "axisText")
+      .attr("Lacks Healthcare (%)");
+
+      chartGroup.append("text")
+      .attr("transform", `translate(${width / 2.5}, ${height + margin.top +23})`)
+      .attr("class", "axisText")
+      .attr("In Poverty (%)");
+      })
+      .catch(function(error) {
+      console.log(error);
+});
