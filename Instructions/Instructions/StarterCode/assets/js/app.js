@@ -73,8 +73,9 @@ function xScale(healthcareData) {
       .data(healthcareData)
       .enter()
       .append("text")
-      .attr("cx", d => xLinearScale(d.poverty))
-      .attr("cy", d => yLinearScale(d.healthcare))
+      //.merge(circlesGroup)
+      .attr("dx", d => xLinearScale(d.poverty))
+      .attr("dy", d => yLinearScale(d.healthcare)+5)
       .attr("font-size", "8px");
 
       // append g
