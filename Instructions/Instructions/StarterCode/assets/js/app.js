@@ -1,12 +1,12 @@
 
-var svgWidth = 960;
+var svgWidth = 800;
 var svgHeight = 500;
 
 var margin = {
   top: 50,
-  right: 40,
+  right: 10,
   bottom: 80,
-  left: 100
+  left: 10
 };
 
 var width = svgWidth - margin.left - margin.right;
@@ -100,13 +100,14 @@ function xScale(healthcareData) {
       chartGroup.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 0 - margin.left +40)
-      .attr("x", 0 - (height / 1.3))
+      .attr("x", 0 - (height / 2))
+      .style("text-anchor", "middle")
       .attr("dy","1em")
       .attr("class", "axisText")
-      .attr("Lacks Healthcare (%)");
+      .text("Lacks Healthcare (%)");
 
       chartGroup.append("text")
       .attr("transform", `translate(${width / 2.5}, ${height + margin.top +23})`)
       .attr("class", "axisText")
-      .attr("In Poverty (%)");
+      .text("In Poverty (%)");
   })
