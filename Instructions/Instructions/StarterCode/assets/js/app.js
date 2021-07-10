@@ -1,9 +1,9 @@
 
 var svgWidth = 960;
-var svgHeight = 500;
+var svgHeight = 600;
 
 var margin = {
-  top: 20,
+  top: 30,
   right: 40,
   bottom: 80,
   left: 100
@@ -64,9 +64,9 @@ function xScale(healthcareData) {
       .append("circle")
       .attr("cx", d => xLinearScale(d.poverty))
       .attr("cy", d => yLinearScale(d.healthcare))
-      .attr("r", 20)
-      .attr("fill", "blue")
-      .attr("opacity", ".5")
+      .attr("r", 8)
+      .attr("fill", "lightblue")
+      .attr("opacity", "1.25")
       .classed("healthcareCircle",true);
 
     // append text
@@ -74,10 +74,7 @@ function xScale(healthcareData) {
       .data(healthcareData)
       .enter()
       .append("text")
-      .text (function(d) {
-        return d.abbr
-
-      //.merge(circlesGroup)
+      .text (function(d) {return d.abbr})
       .attr("dx", d => xLinearScale(d.poverty))
       .attr("dy", d => yLinearScale(d.healthcare)+5)
       .attr("font-size", "8px")
@@ -87,6 +84,7 @@ function xScale(healthcareData) {
       // append g
       chartGroup.append("g")
       .classed('axis', true)
+      .style("font-size", "12px")
       .call(leftAxis);
 
       // append g
@@ -100,9 +98,9 @@ function xScale(healthcareData) {
 
       chartGroup.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left +30)
-      .attr("x", 0 - (height / 1.0))
-      .attr("dy","lem")
+      .attr("y", 0 - margin.left +40)
+      .attr("x", 0 - (height / 1.3))
+      .attr("dy","1em")
       .attr("class", "axisText")
       .attr("Lacks Healthcare (%)");
 
@@ -110,7 +108,4 @@ function xScale(healthcareData) {
       .attr("transform", `translate(${width / 2.5}, ${height + margin.top +23})`)
       .attr("class", "axisText")
       .attr("In Poverty (%)");
-      })
-      .catch(function(error) {
-      console.log(error);
-});
+  })
