@@ -3,10 +3,10 @@ var svgWidth = 800;
 var svgHeight = 500;
 
 var margin = {
-  top: 50,
-  right: 10,
-  bottom: 80,
-  left: 10
+  top: 100,
+  right: 100,
+  bottom: 100,
+  left: 100
 };
 
 var width = svgWidth - margin.left - margin.right;
@@ -21,7 +21,8 @@ var svg = d3
 
 // Append an SVG group
 var chartGroup = svg.append("g")
-  .attr("class", "xText");
+  .attr("class", "xText")
+  .attr("transform", `translate(${margin.left},0)`);
   
   // Retrieve data from the CSV file and execute everything below
 d3.csv("assets/data/data.csv").then(function(healthcareData, err) {
@@ -34,7 +35,7 @@ d3.csv("assets/data/data.csv").then(function(healthcareData, err) {
     });
 
   // function used for updating x-scale var upon click on axis label
-function xScale(healthcareData) {
+  function xScale(healthcareData) {
   
   // create scales
   var xLinearScale = d3.scaleLinear()
@@ -85,13 +86,13 @@ function xScale(healthcareData) {
       chartGroup.append("g")
       .classed('axis', true)
       .style("font-size", "12px")
-      .attr("transform", `translate(${25},0)`)
+      // .attr("transform", `translate(${100},0)`)
       .call(leftAxis);
 
       // append g (bottom)
       chartGroup.append("g")
       .classed('axis', true)
-      .attr("transform", `translate(25,${height})`)
+      .attr("transform", `translate(0,${height})`)
       .call(bottomAxis);
 
       //labels 
@@ -99,7 +100,7 @@ function xScale(healthcareData) {
 
       chartGroup.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left +40)
+      .attr("y", 0 - margin.left +50)
       .attr("x", 0 - (height / 2))
       .style("text-anchor", "middle")
       .attr("dy","1em")
@@ -107,7 +108,7 @@ function xScale(healthcareData) {
       .text("Lacks Healthcare (%)");
 
       chartGroup.append("text")
-      .attr("transform", `translate(${width / 2.5}, ${height + margin.top +23})`)
+      .attr("transform", `translate(${width / 2.5}, ${height + 35})`)
       .attr("class", "axisText")
       .text("In Poverty (%)");
   })
