@@ -1,4 +1,10 @@
-# D3-Challenge
+# Anne Niemiec Assignment
+# Worked closely with tutor on this assignment
+# Assignment was short and required fewer commits
+# Repository:  D3-Challenge
+# Javascript:  assets/js/app.js
+# HTML: index.html
+
 # D3 Homework - Data Journalism and D3
 
 ![Newsroom](https://media.giphy.com/media/v2xIous7mnEYg/giphy.gif)
